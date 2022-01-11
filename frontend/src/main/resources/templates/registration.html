@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация</title>
+  <div th:replace="maket/resources :: bootstrapCss"></div>
+  <div th:replace="maket/mainCss :: mainCss"></div>
+</head>
+<body>
+
+<div th:replace="maket/header :: header"></div>
+
+<section class="main-content">
+  <div class="container-authorization">
+    <h2>Регистрация</h2>
+    <form class="row g-4" th:object="${user}" th:method="POST" th:action="@{/registration}">
+      <div class="col-md-6">
+        <label for="validationDefault01" class="form-label">Введите фамилию и имя</label>
+        <input th:field="*{fullname}" type="text" class="form-control" id="validationDefault01" required>
+      </div>
+      <div class="col-md-6">
+        <label for="validationDefaultUsername" class="form-label">Введите email</label>
+        <div class="input-group">
+          <span class="input-group-text" id="inputGroupPrepend2">@</span>
+          <input th:field="*{username}" type="text" class="form-control" id="validationDefaultUsername"
+                 aria-describedby="inputGroupPrepend2" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="validationDefault03" class="form-label">Введите пароль</label>
+        <input th:field="*{password}" type="text" class="form-control" id="validationDefault02" required>
+      </div>
+      <div class="col-md-6">
+        <label for="validationDefault03" class="form-label">Повторите пароль</label>
+        <input type="text" class="form-control" id="validationDefault03" required>
+      </div>
+      <div class="col-md-6">
+        <label for="validationDefault04" class="form-label">Введите телефон</label>
+        <input th:field="*{phoneNumber}" type="text" class="form-control" id="validationDefault04" required>
+      </div>
+      <div class="col-md-3">
+        <label for="validationDefault04" class="form-label">Введите город</label>
+        <input th:field="*{city}" type="text" class="form-control" id="validationDefault05" required>
+      </div>
+      <div class="col-md-3">
+        <label for="validationDefault05" class="form-label">Выберете страну</label>
+        <select th:field="*{country}" class="form-select" id="validationDefault06" required>
+          <option selected value="Россия">Россия</option>
+          <option value="Украина">Украина</option>
+          <option value="Беларусь">Беларусь</option>
+          <option value="Казахстан">Казахстан</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+          <label class="form-check-label" for="invalidCheck2">
+            Я согласен с условиями <a href="#"> политики конфиденциальности</a>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-primary" type="submit">Подтвердить</button>
+      </div>
+      <div class="col-md-6" th:if="${error}">
+        <p style="color: crimson" th:text="${error}"></p>
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Если у вас есть аккаунт, перейдите по ссылке <a th:href="@{/login}">авторизация</a></label>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div th:replace="maket/footer :: footer"></div>
+<div th:replace="maket/resources :: js"></div>
+
+</body>
+</html>

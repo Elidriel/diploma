@@ -1,0 +1,31 @@
+<tc-dropdown class="item" [close]="closeDropdown">
+  <tc-dropdown-button>
+    <div class="avatar-box d-flex align-items-center">
+      <tc-avatar [src]="'assets/content/avatar.png'"></tc-avatar>
+      <div class="name text-nowrap d-none d-md-block">
+        {{ account.fullName }}
+      </div>
+    </div>
+  </tc-dropdown-button>
+
+  <tc-dropdown-content
+    [align]="appSettings.rtl ? 'left' : 'right'"
+    [animation]="'fadeInUp'"
+    [offset]="[8, 0]"
+    [width]="160"
+  >
+    <ul class="menu-list">
+      <li>
+        <a href="#" (click)="logout()">
+          <tc-icon
+            [iconClass]="'sli-logout'"
+            [tcFontSize]="16"
+            [padding]="0"
+            class="ml-1 mr-1"
+          ></tc-icon>
+          <span class="ml-1 mr-1 pt-1">Выйти</span>
+        </a>
+      </li>
+    </ul>
+  </tc-dropdown-content>
+</tc-dropdown>

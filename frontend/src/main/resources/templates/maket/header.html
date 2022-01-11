@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<header th:fragment="header">
+  <div class="row top-bar">
+    <div class="col-md-3 col-xl-2">
+      Воронеж
+    </div>
+    <div class="col-md-3 col-xl-6">
+
+    </div>
+    <div class="col-md-3 col-xl-2">
+      Доставка и оплата
+    </div>
+    <div class="col-md-3 col-xl-2">
+      Помощь
+    </div>
+  </div>
+  <nav class="sticky-top col-12 navbar navbar-expand-lg navbar-dark bd-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand  col-md-3 col-xl-2 p-0" th:href="@{/}">ЗожШоп</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1"
+              aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-md-10 col-xl-4 p-0" data-catalog-links>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Распродажа</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Новости</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pe-5">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+              <i class="far fa-user-circle"></i></a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" th:if="${!#request.isUserInRole('ROLE_ADMIN') && !#request.isUserInRole('ROLE_USER') && !#request.isUserInRole('ROLE_TEMP_USER')}" th:href="@{/registration}">Регистрация</a></li>
+              <li><a class="dropdown-item" th:if="${!#request.isUserInRole('ROLE_ADMIN') && !#request.isUserInRole('ROLE_USER') && !#request.isUserInRole('ROLE_TEMP_USER')}" th:href="@{/login}">Авторизация</a></li>
+              <li><a class="dropdown-item" th:if="${#request.isUserInRole('ROLE_ADMIN') || #request.isUserInRole('ROLE_USER')}" th:href="@{/account}">Мой аккаунт</a></li>
+              <li><a class="dropdown-item" th:if="${#request.isUserInRole('ROLE_ADMIN') || #request.isUserInRole('ROLE_USER') || #request.isUserInRole('ROLE_TEMP_USER')}" th:href="@{/logout}">Выйти</a></li>
+            </ul>
+          </li>
+          <li class="nav-item" th:if="${#request.isUserInRole('ROLE_ADMIN') || #request.isUserInRole('ROLE_USER')}">
+            <a class="nav-link" th:href="@{/order-history}">
+              <i class="fas fa-boxes"></i></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/cart}">
+              <i class="fas fa-cart-arrow-down"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fas fa-search"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+</body>
+</html>

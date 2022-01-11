@@ -1,0 +1,127 @@
+<tc-card *ngIf="product" title="Описание">
+  <mat-form-field>
+    <input
+        matInput
+        [(ngModel)]="product.name"
+        placeholder="Наименование товара"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+        matInput
+        [(ngModel)]="product.brand"
+        placeholder="Бренд"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+        matInput
+        [(ngModel)]="product.price"
+        placeholder="Цена товара"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+        matInput
+        [(ngModel)]="product.imageName"
+        placeholder="Имя картинки"
+    />
+  </mat-form-field>
+
+  <div class="form-group row">
+    <div class="col-sm-12 col-md-12">
+      <ng-select
+          placeholder="Размеры"
+          bindLabel="name"
+          [items]="availableSizes | async"
+          [multiple]="true"
+          [closeOnSelect]="false"
+          [(ngModel)]="product.sizes"
+          [clearable]="false"
+      >
+        <ng-template ng-option-tmp let-item="item">
+          <div>
+            <b>{{ item.value }} </b>
+            <small>({{ item.id }})</small>
+          </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+          <b>{{ item.value }}</b>
+          <small>({{ item.id }})</small>
+          <span> | </span>
+          <span
+              class="ng-value-icon right"
+              (click)="clear(item)"
+              aria-hidden="true"
+          >×</span
+          >
+        </ng-template>
+      </ng-select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-12 col-md-12">
+      <ng-select
+          placeholder="Цвета"
+          bindLabel="name"
+          [items]="availableColors | async"
+          [multiple]="true"
+          [closeOnSelect]="false"
+          [(ngModel)]="product.colors"
+          [clearable]="false"
+      >
+        <ng-template ng-option-tmp let-item="item">
+          <div>
+            <b>{{ item.value }} </b>
+            <small>({{ item.id }})</small>
+          </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+          <b>{{ item.value }}</b>
+          <small>({{ item.id }})</small>
+          <span> | </span>
+          <span
+              class="ng-value-icon right"
+              (click)="clear(item)"
+              aria-hidden="true"
+          >×</span
+          >
+        </ng-template>
+      </ng-select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-12 col-md-12">
+      <ng-select
+          placeholder="Категории"
+          bindLabel="name"
+          [items]="allCategories"
+          [multiple]="false"
+          [closeOnSelect]="false"
+          [(ngModel)]="product.category"
+          [clearable]="false"
+      >
+        <ng-template ng-option-tmp let-item="item">
+          <div>
+            <b>{{ "(" + item.catalogDto.name + ")" + item.name  }} </b>
+          </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+          <div>
+            <b>{{ "(" + item.catalogDto.name + ")" + item.name }} </b>
+          </div>
+        </ng-template>
+      </ng-select>
+    </div>
+  </div>
+
+  <button tc-button view="success" (click)="save()">
+    Сохранить
+  </button>
+
+</tc-card>

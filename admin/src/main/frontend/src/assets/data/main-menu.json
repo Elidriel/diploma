@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Настройки",
+    "groupTitle": true
+  },
+  {
+    "title": "Товары",
+    "icon": {
+      "class": "fa fa-calendar",
+      "bg": "#C5CAE9",
+      "color": "rgba(0,0,0,.87)"
+    },
+    "routing": "product-list"
+  },
+  {
+    "title": "Каталоги",
+    "icon": {
+      "class": "fa fa-calendar",
+      "bg": "#C5CAE9",
+      "color": "rgba(0,0,0,.87)"
+    },
+    "routing": "catalog-list"
+  },
+  {
+    "title": "Категории",
+    "icon": {
+      "class": "fa fa-calendar",
+      "bg": "#C5CAE9",
+      "color": "rgba(0,0,0,.87)"
+    },
+    "routing": "category-list"
+  },
+  {
+    "title": "Пользователи",
+    "icon": {
+      "class": "fa fa-calendar",
+      "bg": "#C5CAE9",
+      "color": "rgba(0,0,0,.87)"
+    },
+    "routing": "user-list"
+  }
+]

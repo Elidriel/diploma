@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Header</title>
+</head>
+<body>
+
+<style type="text/css" th:fragment="mainCss">
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+
+    min-width: 320px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  section {
+    padding: 50px 0px;
+    min-height: 600px;
+  }
+
+  a {
+    color: #0a53be;
+  }
+
+  a:hover {
+    color: #2c3034;
+  }
+
+  .container-fluid {
+
+  }
+  .modal-body img {
+    max-width: 100px;
+  }
+  /* Top-bar */
+  .top-bar {
+    background-color: darkgray;
+    text-align: center;
+  }
+  /* Top-bar */
+
+  .navbar-brand {
+    text-align: center;
+  }
+
+  /* Carousel */
+  .carousel {
+    padding: 0;
+  }
+
+  .carousel .carousel-item {
+    display: flex;
+    max-height: 650px;
+  }
+
+  .carousel .carousel-item img {
+    object-fit: cover;
+  }
+
+  /* Carousel */
+
+  /* Product card */
+  .product-card {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    transition: all .3s;
+  }
+
+  .product-card:hover {
+    box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75);
+  }
+
+  .product-thumb a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    padding: 20px;
+  }
+
+  .product-thumb img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .product-details {
+    padding: 20px;
+  }
+  .product-details h4 a {
+    font-weight: 500;
+    display: block;
+    height: 60px;
+    overflow: hidden;
+    text-decoration: none;
+  }
+  .product-details p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #2c3034;
+    height: 44px;
+    overflow: hidden;
+  }
+
+  .product-bottom-details{
+    overflow: hidden;
+    border-top: 1px solid #2c3034;
+  }
+  .product-price{
+    font-size: 18px;
+    color: red;
+    font-weight: 600;
+  }
+  .product-price small {
+    color: dimgray;
+    font-weight: 400;
+    text-decoration: line-through;
+    margin-right: 10px;
+  }
+  .product-links a {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+  /* Product card */
+  /* Footer */
+  .footer {
+    background-color: darkgray;
+    min-height: auto;
+  }
+  .footer h4 {
+    color: black;
+    text-transform: uppercase;
+    font-size: 16px;
+    border-bottom: black 1px solid;
+    padding-bottom: 3px;
+  }
+  .footer a {
+    text-decoration: none;
+    transition: all .3s;
+  }
+  .footer a, li{
+    color: black;
+  }
+  .footer a:hover{
+    color: white;
+    text-decoration: underline;
+  }
+  .footer li a {
+    display: block;
+  }
+  .footer-icons a {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 24px;
+  }
+  /* Footer */
+
+  /* Authorization */
+  .container-authorization{
+    width: 40%;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  /* Authorization */
+
+  /* Carts */
+  .container-carts{
+    width: 60%;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .container-carts h2{
+    background-color: lightgrey;
+    padding-bottom: 10px;
+    padding-left: 10px;
+  }
+  .container-carts form{
+    padding-left: 15px;
+  }
+  .container-carts h6 {
+    text-align: center;
+    padding-bottom: 10px;
+    padding-left: 10px;
+  }
+  .button-div{
+    margin-left: 25%;
+    margin-right: auto;
+  }
+  .button-div button{
+    background-color: slategray;
+    border: slategray;
+  }
+  .product-cart{
+    justify-content: center;
+    border: solid 1px;
+    border-radius: 5px;
+    padding-top: 10px;
+    margin-bottom: 5px;
+  }
+  .order{
+    margin: 0px 0px 50px 0px;
+  }
+
+  /* Carts */
+
+  /* Sidebar */
+  .nav-item a {
+    text-align: right;
+  }
+
+  .nav-item ul a {
+    text-align: left;
+  }
+  /* Sidebar */
+
+  /* Parameters */
+  .parameter {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    transition: all .3s;
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .parameter:hover {
+    box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75);
+  }
+
+  /* Parameters */
+
+  .navbar-expand-lg{
+    padding: 0;
+  }
+
+  .navbar-light{
+    background-color: dimgray;
+  }
+
+  .bg-light{
+    background-color: dimgray;
+  }
+  .navbar-expand-lg{
+    background-color: dimgray;
+  }
+
+  .logo{
+    height: 200px;
+  }
+
+  .test1{
+    background-color: aqua;
+    border: solid 2px;
+    border-color: crimson;
+  }
+
+  .content1{ /* Скрываем сразу контент */
+    display: none;
+    position: relative;
+  }
+  .content1:hover{
+    display: block;
+  }
+  .wrapper1 form:hover ~ .content1{ /* При наведении на ссылку в раппере, откроется контент */
+    display: block;
+  }
+  .hide-element{
+    display: none;
+  }
+  .show-element:hover ~ .hide-element{
+    display: block;
+  }
+  .hide-element:hover{
+    display: block;
+  }
+  .row-cart {
+    margin-left: 5px;
+  }
+
+  .row-history {
+    margin-right: 5px;
+  }
+
+
+
+</style>
+
+</body>
+</html>

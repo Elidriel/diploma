@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Логин</title>
+  <div th:replace="maket/resources :: bootstrapCss"></div>
+  <div th:replace="maket/mainCss :: mainCss"></div>
+</head>
+<body>
+
+<div th:replace="maket/header :: header"></div>
+
+<section class="main-content">
+  <div class="container-authorization">
+    <h2>Авторизация</h2>
+    <div th:if="${registerSuccess}">
+      <p style="color: chocolate" th:text="${registerSuccess}"></p>
+    </div>
+    <form th:method="POST" th:action="@{/login}" class="row g-4">
+      <div class="mb-3">
+        <label for="username" class="form-label">Введите Email</label>
+        <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Введите пароль</label>
+        <input type="password" class="form-control" name="password" id="password">
+        <div id="emailHelp" class="form-text">Забыли пароль? <a href="#">Восстановить</a></div>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Запомнить</label>
+      </div>
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary">Войти</button>
+      </div>
+      <div class="col-md-12">
+        <label>Если нет акаунта, перейдите по ссылке <a th:href="@{/registration}">регистрация</a></label>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div th:replace="maket/footer :: footer"></div>
+<div th:replace="maket/resources :: js"></div>
+
+</body>
+</html>

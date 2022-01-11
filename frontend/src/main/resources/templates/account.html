@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <div th:replace="maket/resources :: bootstrapCss"></div>
+  <div th:replace="maket/mainCss :: mainCss"></div>
+</head>
+<body>
+
+<div th:replace="maket/header :: header"></div>
+
+<section class="main-content">
+  <div class="container-authorization">
+    <h2>Личный кабинет</h2>
+    <h4>Мои данные</h4>
+    <form class="row g-4" th:object="${userAccount}" th:method="POST" th:action="@{/account/save}">
+      <div class="col-md-6">
+        <label for="validation01" class="form-label">Фамилия и имя</label>
+      </div>
+      <div class="col-md-6">
+        <input th:placeholder="*{fullname}" th:field="*{fullname}" type="text" class="form-control" id="validation01" required>
+      </div>
+      <div class="col-md-6">
+        <label for="validation03" class="form-label">Телефон</label>
+      </div>
+      <div class="col-md-6">
+        <input th:placeholder="*{phone}" th:field="*{phone}" type="text" class="form-control" id="validation03" required>
+      </div>
+      <div class="col-md-6">
+        <label for="validation04" class="form-label">Страна</label>
+      </div>
+      <div class="col-md-6">
+        <select th:selected="*{country}" th:field="*{country}" class="form-select" id="validation04" required>
+          <option value="Россия">Россия</option>
+          <option value="Украина">Украина</option>
+          <option value="Беларусь">Беларусь</option>
+          <option value="Казахстан">Казахстан</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="validation05" class="form-label">Город</label>
+      </div>
+      <div class="col-md-6">
+        <input th:placeholder="*{city}" th:field="*{city}" type="text" class="form-control" id="validation05" required>
+      </div>
+
+
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Изменить</button>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<div th:replace="maket/footer :: footer"></div>
+<div th:replace="maket/resources :: js"></div>
+
+</body>
+</html>

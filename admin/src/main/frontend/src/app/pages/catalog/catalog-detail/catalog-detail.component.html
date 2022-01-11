@@ -1,0 +1,21 @@
+<tc-card *ngIf="catalog" title="Описание">
+  <mat-form-field>
+    <input
+        matInput
+        [(ngModel)]="catalog.name"
+        placeholder="Наименование каталога"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+        matInput
+        [(ngModel)]="catalog.url"
+        placeholder="Url каталога"
+    />
+  </mat-form-field>
+
+  <button tc-button view="success" (click)="save()">
+    Сохранить
+  </button>
+</tc-card>

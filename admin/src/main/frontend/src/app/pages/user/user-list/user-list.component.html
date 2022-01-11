@@ -1,0 +1,54 @@
+<table
+    *ngIf="users.length"
+    class="table table-striped table-editable no-margin mb-sm"
+>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>ФИО покупателя</th>
+    <th>Телефон</th>
+    <th>Электронная почта</th>
+    <th>Город</th>
+    <th>Страна</th>
+    <th>Статус</th>
+    <th>Изменение статуса</th>
+    <th>Удаление пользователя</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users">
+    <td>
+      {{ user.id }}
+    </td>
+    <td>
+      {{ user.fullname }}
+    </td>
+    <td>
+      {{ user.phoneNumber }}
+    </td>
+    <td>
+      {{ user.email }}
+    </td>
+    <td>
+      {{ user.city }}
+    </td>
+    <td>
+      {{ user.country }}
+    </td>
+    <td>
+      {{ getStatus(user.isActive)}}
+    </td>
+    <td>
+      <button tc-button view="accent" (click)="block(user)">
+        Блокировать/Разблокировать
+      </button>
+    </td>
+    <td>
+      <button tc-button view="error" (click)="delete(user)">
+        Удалить
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,38 @@
+<table
+    *ngIf="products.length"
+    class="table table-striped table-editable no-margin mb-sm"
+>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Название товара</th>
+    <th>Бренд</th>
+    <th>Категория</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of products">
+    <td [routerLink]="['../product/' + product.id]">
+      {{ product.id }}
+    </td>
+    <td [routerLink]="['../product/' + product.id]">
+      {{ product.name }}
+    </td>
+    <td [routerLink]="['../product/' + product.id]">
+      {{ product.brand }}
+    </td>
+    <td [routerLink]="['../product/' + product.id]">
+      {{ product.categoryName }}
+    </td>
+    <td>
+      <button tc-button view="error" (click)="delete(product)">
+        Удалить
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button tc-button view="success" [routerLink]="['../product/new']">
+  Добавить
+</button>

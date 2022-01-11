@@ -1,0 +1,46 @@
+<tc-card *ngIf="category" title="Описание">
+  <mat-form-field>
+    <input
+        matInput
+        [(ngModel)]="category.name"
+        placeholder="Наименование категории"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+        matInput
+        [(ngModel)]="category.url"
+        placeholder="Url категории"
+    />
+  </mat-form-field>
+
+  <div class="form-group row">
+    <div class="col-sm-12 col-md-12">
+      <ng-select
+          placeholder="Каталог"
+          bindLabel="name"
+          [items]="allCatalogs"
+          [multiple]="false"
+          [closeOnSelect]="false"
+          [(ngModel)]="category.catalogDto"
+          [clearable]="false"
+      >
+        <ng-template ng-option-tmp let-item="item">
+          <div>
+            <b>{{ item.name }} </b>
+          </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+          <div>
+            <b>{{ item.name }} </b>
+          </div>
+        </ng-template>
+      </ng-select>
+    </div>
+  </div>
+
+  <button tc-button view="success" (click)="save()">
+    Сохранить
+  </button>
+</tc-card>

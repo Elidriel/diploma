@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <div th:replace="maket/resources :: bootstrapCss"></div>
+    <div th:replace="maket/mainCss :: mainCss"></div>
+</head>
+<body>
+
+<div th:replace="maket/header :: header"></div>
+
+<section class="carts-content">
+    <form class="row g-4" th:object="${order}" th:method="POST" th:action="@{/making-an-order/save}">
+        <div class="container-carts">
+            <h2>Корзина товаров</h2>
+            <div class="row row-cart">
+                <div class="col-lg-8">
+                <div th:each="product: ${cart.getProducts()}"
+                     th:attr="data-product-id=${product.getId()}">
+                    <div class="product-cart row">
+                        <div class="col-lg-2">
+                            <a href="#"><img th:src="${product.getImageName()}" alt=""></a>
+                        </div>
+                        <div class="col-lg-4">
+                            <p th:text="${product.getName()}"></p>
+                        </div>
+                        <div class="col-lg-2">
+                            <p th:text="${product.getPrice()}"></p>
+                        </div>
+                        <div class="col-lg-2">
+                            <input class="form-select" data-count-product th:value="${product.getCount()}">
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div>
+                        <h6 th:text="${'Количество товаров - ' + cart.getProducts().size()}"></h6>
+                        <h6 th:text="${'Общая стоимость - ' + cart.getPriceSum()}"></h6>
+                    </div>
+                </div>
+            </div>
+            <h2>Оформление заказа</h2>
+
+            <div>
+                <h4>1 Укажите адрес доставки</h4>
+                <div class="row ">
+                    <div class="col-md-8">
+                        <label for="address00" class="form-label">Город</label>
+                        <input th:placeholder="*{city}" th:field="*{city}" type="text" class="form-control"
+                               id="address00" required>
+                    </div>
+                    <div class="col-md-8">
+                        <label for="address01" class="form-label">Улица</label>
+                        <input th:field="*{street}" type="text" class="form-control" id="address01" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="address02" class="form-label">Номер дома</label>
+                        <input th:field="*{house}" type="text" class="form-control" id="address02" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="address03" class="form-label">Кв/Офис</label>
+                        <input th:field="*{apartment}" type="text" class="form-control" id="address03" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="address04" class="form-label">Доставить до</label>
+                        <input th:field="*{deliveryTo}" type="text" class="form-control" id="address04" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="address05" class="form-label">Комментарии к заказу</label>
+                        <input th:field="*{comment}" type="text" class="form-control" id="address05" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="making-top row">
+                <h4>2 Выберете способ оплаты</h4>
+                <div class="making col-lg-6">
+                    <h6><input th:field="*{paymentType}" th:value="${'Онлайн на сайте'}" class="making-check-input"
+                               type="checkbox" id="makingCheck03"> Онлайн на сайте</h6>
+                </div>
+                <div class="making col-lg-6">
+                    <h6><input th:field="*{paymentType}" th:value="${'При получении'}" class="making-check-input"
+                               type="checkbox" value="" id="makingCheck04"> При получении</h6>
+                </div>
+
+            </div>
+            <div class="making-top row">
+                <h4>3 Контакты</h4>
+
+                <div class="col-md-7">
+                    <label for="makingDefault01" class="form-label">Введите фамилию и имя</label>
+                    <input th:placeholder="*{customerFullname}" th:field="*{customerFullname}" type="text"
+                           class="form-control" id="makingDefault01" required>
+                </div>
+                <div class="col-md-7">
+                    <label for="makingDefault04" class="form-label">Введите телефон</label>
+                    <input th:placeholder="*{customerPhone}" th:field="*{customerPhone}" type="text"
+                           class="form-control" id="makingDefault04" required>
+                </div>
+                <p><input class="making-check-input" type="checkbox" value="" id="makingCheck05"> Я даю согласие на
+                    обработку
+                    персональных данных в соответствии с условиями
+                    <a href="#">Пользовательского согласшения</a>.</p>
+                <p><input class="making-check-input" type="checkbox" value="" id="makingCheck06"> Я даю согласие на
+                    получение
+                    рекламных рассылок посредством SMS и email.</p>
+
+            </div>
+            <div class="button-div">
+                <button class="btn btn-primary" type="submit">Оформить заказ</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<div th:replace="maket/footer :: footer"></div>
+<div th:replace="maket/resources :: js"></div>
+
+</body>
+</html>

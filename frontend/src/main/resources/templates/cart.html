@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="maket/resources :: bootstrapCss"></div>
+    <div th:replace="maket/mainCss :: mainCss"></div>
+</head>
+<body>
+
+<div th:replace="maket/header :: header"></div>
+
+<section class="carts-content">
+    <div th:if="${cart.getProducts().isEmpty()}">
+        <h2>Корзина пустая</h2>
+    </div>
+    <div class="container-carts" th:if="${!cart.getProducts().isEmpty()}">
+        <h2>Корзина товаров</h2>
+        <div class="row row-cart" >
+            <div class="col-lg-8">
+            <div  th:each="product: ${cart.getProducts()}" th:attr="data-product-id=${product.getId()}">
+                <div class="product-cart row">
+                    <div class="col-lg-2">
+                        <a href="#"><img th:src="${product.getImageName()}" alt=""></a>
+                    </div>
+                    <div class="col-lg-4">
+                        <p th:text="${product.getName()}"></p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p th:text="${product.getPrice()}"></p>
+                    </div>
+                    <div class="col-lg-2">
+                        <input class="form-select" data-count-product th:value="${product.getCount()}">
+                    </div>
+                    <div class="col-lg-1">
+                        <a class="nav-link">
+                            <i data-remove-product class="far fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div>
+                    <h6 th:text="${'Количество товаров - ' + cart.getProducts().size()}"></h6>
+                    <h6 th:text="${'Общая стоимость - ' + cart.getPriceSum()}"></h6>
+                </div>
+                <div class="button-div">
+                    <a class="btn btn-primary" th:href="@{/making-an-order}">Перейти к оформлению</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div th:replace="maket/footer :: footer"></div>
+<div th:replace="maket/resources :: js"></div>
+
+
+</body>
+</html>

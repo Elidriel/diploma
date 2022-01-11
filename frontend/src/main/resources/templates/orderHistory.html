@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <div th:replace="maket/resources :: bootstrapCss"></div>
+    <div th:replace="maket/mainCss :: mainCss"></div>
+</head>
+<body>
+
+<div th:replace="maket/header :: header"></div>
+
+<section class="carts-content">
+    <div class="container-carts">
+        <h2>История заказов</h2>
+
+        <div class="order" th:each="order :${orders}">
+            <div class="row row-history">
+                <div class="col-lg-4">
+                    <div>
+                        <h6 th:text="${'Номер заказа: ' + order.getId()}"></h6>
+                        <h6 th:text="${'Дата заказа: ' + order.getDateCreate()}"></h6>
+                        <h6 th:text="${'Доставка до: ' + order.getDeliveryTo()}"></h6>
+                        <h6 th:text="${'Адрес доставки : ' + order.getAddress()}"></h6>
+                        <h6 th:text="${'Общая сумма: ' + order.getCartDto().getPriceSum()}"></h6>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div th:each="product :${order.getCartDto().getProducts()}">
+                        <div class="product-cart row">
+                            <div class="col-lg-2">
+                                <a href="#"><img th:src="${product.getImageName()}" alt=""></a>
+                            </div>
+                            <div class="col-lg-5">
+                                <p th:text="${product.getName()}"></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p th:text="${product.getPrice()}"></p>
+                            </div>
+                            <div class="col-lg-2">
+                                <p th:text="${product.getCount()}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</section>
+
+<div th:replace="maket/footer :: footer"></div>
+<div th:replace="maket/resources :: js"></div>
+
+</body>
+</html>

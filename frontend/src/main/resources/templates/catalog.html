@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <div th:replace="maket/resources :: bootstrapCss"></div>
+  <div th:replace="maket/mainCss :: mainCss"></div>
+</head>
+<body>
+
+<div th:replace="maket/header :: header"></div>
+
+<div class="container-fluid">
+  <div class="row min-vh-100 flex-column flex-md-row">
+    <aside class="col-12 col-md-4 col-xl-2 p-0 bg-dark ">
+      <nav
+          class="navbar navbar-expand-md navbar-dark bd-dark flex-md-column flex-row align-items-center py-2 text-center sticky-top "
+          id="sidebar">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent2"
+                aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse order-last" id="navbarSupportedContent2">
+          <ul class="navbar-nav flex-column w-100 justify-content-center">
+            <li class="nav-item logo">
+            </li>
+            <li th:each="category: ${categories}" class="nav-item dropend">
+              <a th:text="${category.name}"
+                 th:href="@{/catalog/{catalogUrl}/category/{categoryUrl}(catalogUrl=${category.catalogUrl}, categoryUrl=${category.url})}"
+                 class="nav-link dropdown-toggle dropdown-toggle-split"
+                 ></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <section class="main-content col-md-8 col-xl-10 p-0 "
+             th:attr="data-catalog-url=${currentCatalog != null ? currentCatalog.getUrl() : null},
+             data-category-url=${currentCategory != null ? currentCategory.getUrl() : null}">
+      <div class="container">
+        <div class="show-element">
+          <h3>Выберете параметры</h3>
+        </div>
+        <div class="hide-element">
+            <div class="parameter">
+              <div>
+                Диапазон цены
+                <label class="form-label"> от </label>
+                <input data-starting-price-filter type="number"/>
+                <label class="form-label"> до </label>
+                <input data-final-price-filter type="number"/>
+                рублей
+              </div>
+              <div>
+                Размер
+                <label th:each="size: ${sizes}"><input th:text="${size}" th:attr="data-size-filter=${size}" type="checkbox"></label>
+              </div>
+              <div>
+                Цвет
+                <label th:each="color: ${colors}"><input th:text="${color}" th:attr="data-color-filter=${color}" type="checkbox"></label>
+              </div>
+              <div>
+                Бренд
+                <label th:each="brand: ${brands}"><input th:text="${brand}" th:attr="data-brand-filter=${brand}" type="checkbox"></label>
+              </div>
+              <button class="btn btn-primary" data-product-filter-accept>Отобрать</button>
+            </div>
+        </div>
+
+        <div class="row">
+          <div th:each="product: ${products}" th:attr="data-product-id=${product.getId()}" class="col-lg-4 col-sm-6 mb-4">
+            <div class="product-card">
+              <div class="product-thumb">
+                <a href="#"><img th:src="@{${'/images/products/' + product.getImageName()}}" alt=""></a>
+
+              </div>
+              <div class="product-details">
+                <h4><a th:text="${product.name}"></a></h4>
+                <div class="product-bottom-details d-flex justify-content-between">
+                  <div th:text="${product.price}" class="product-price"></div>
+                  <div class="product-links" th:if="${!product.getInCart()}">
+                    <a><i data-add-product-button class="fas fa-cart-plus"></i></a>
+                  </div>
+                  <div class="product-links" th:if="${product.getInCart()}">
+                    <input class="form-select" data-count-product th:value="${product.getCount()}">
+                    <i data-remove-product class="far fa-trash-alt"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+  </div>
+</div>
+
+<div th:replace="maket/footer :: footer"></div>
+<div th:replace="maket/resources :: js"></div>
+
+</body>
+</html>
